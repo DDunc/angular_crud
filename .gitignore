@@ -3,3 +3,4 @@ pirates_dev
 node_modules
 build/bundle.js
 bundle.js
+test

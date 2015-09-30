@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body data-ng-app="piratesApp">
+  <main data-ng-controller="PiratesController" data-ng-init="getAll()">
+    <h1>Pirates App:</h1>
+    <form name="newPirateForm" data-ng-submit="createPirate(newPirate)">
+      <label for="pirateBody">New Pirate:
+        <input type="text" required data-ng-model="newPirate.pirateBody">
+      </label>
+      <button type="submit" data-ng-disabled="newPirateForm.$invalid">Create New Pirate</button>
+    </form>
+    <ul id="pirateslist">
+    	<li class="{{pirate.status}}" data-ng-repeat="pirate in pirates">
+        <span data-ng-if="!pirate.editing">{{pirate.pirateBody}}
+          <button data-ng-click="startUpdate(pirate)">Edit</button>
+          <button data-ng-click="removePirate(pirate)">Delete</button>
+          <button data-ng-click="singShanty(pirate)">Sing Shanty</button>
+        </span>
+        <form data-ng-if="pirate.editing" name="{{'pirateForm' + pirate._id}}" data-ng-submit="updatePirate(pirate)">
+          <input type="text" data-ng-model="pirate.pirateBody" ng-class="pirate.status">
+          <button type="submit">Save Changes</button>
+          <button type ="button" data-ng-click="cancelUpdate(pirate)">Cancel</button>
+        </form>
+      </li>
+    </ul>
+  </main>
+	<script src="bundle.js"></script>
+</body>
+</html>
