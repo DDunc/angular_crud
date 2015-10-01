@@ -7,6 +7,7 @@ var piratesRouter = require(__dirname + '/routes/pirates_routes');
 app.use('/api', piratesRouter);
 var port = process.env.PORT || 3000;
 
-app.listen(port, function() {
+
+module.exports = app.listen(port, function() {
   console.log('server up on port: ' + port);
 });

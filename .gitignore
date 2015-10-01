@@ -3,4 +3,6 @@ pirates_dev
 node_modules
 build/bundle.js
 bundle.js
-test
+test/pirates_dev
+test/client/test_bundle.js
+mocha_ex.html

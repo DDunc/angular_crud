@@ -21,7 +21,7 @@ module.exports = function(app) {
           console.log(res.data);
           $scope.pirates = res.data;
         }, function(res) {
-          console.log(res);
+          console.log("FAILED", res);
         });
     };
 
@@ -31,8 +31,9 @@ module.exports = function(app) {
         .then(function(res) {
           $scope.pirates.push(res.data);
           $scope.newPirate = null;
+          pirate.status = undefined;
         }, function(res) {
-          console.log(res);
+          console.log("FAILED", res);
         });
     };
 
@@ -45,6 +46,7 @@ module.exports = function(app) {
       $http.put('/api/pirates/' + pirate._id, pirate)
         .then(function(res) {
           pirate.editing = false;
+          pirate.status = undefined;
         },
         function(res) {
           $timeout.cancel(timed);
@@ -60,7 +62,6 @@ module.exports = function(app) {
           $scope.pirates.splice($scope.pirates.indexOf(pirate), 1);
         }, function(res) {
           pirate.status = 'failed';
-          console.log(res);
         });
     };
   }]);
